@@ -1,4 +1,12 @@
+using Microsoft.AspNetCore.Mvc.Formatters.Xml;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(policyBuilder =>
+    policyBuilder.AddDefaultPolicy(policy =>
+        policy.WithOrigins("*").AllowAnyHeader().AllowAnyHeader())
+);
+
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!!!");
